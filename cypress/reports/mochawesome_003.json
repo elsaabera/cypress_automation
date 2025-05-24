@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-24T13:19:28.392Z",
+    "end": "2025-02-24T13:19:43.631Z",
+    "duration": 15239,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3db76225-ee73-4a38-a33b-f4c4ea08f1b9",
+      "title": "",
+      "fullFile": "cypress\\e2e\\static_table.cy.js",
+      "file": "cypress\\e2e\\static_table.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c4c3440f-3301-4437-ae8d-7e1fc2621f7f",
+          "title": "table",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should type in the search input, click the search button, and display results",
+              "fullTitle": "table should type in the search input, click the search button, and display results",
+              "timedOut": null,
+              "duration": 4709,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Visit the page containing the search input\ncy.visit(\"https://testautomationpractice.blogspot.com/\");\n// Type \"Amod\" into the search input box\ncy.get('#Wikipedia1_wikipedia-search-input').type('Amod') // Typing the search term\n.should('have.value', 'Amod'); // Validate the input field contains the correct text\n// Click the search button\ncy.get('input.wikipedia-search-button').click();\n// Wait for the search results to load\ncy.wait(2000); // Wait for 2 seconds\n// Ensure that the search results container is visible\ncy.get('#Wikipedia1_wikipedia-search-results').should('be.visible');\n// Validate that at least one search result is displayed\ncy.get('#wikipedia-search-result-link').should('have.length.greaterThan', 0); // Check that at least one search result is shown\n// Optionally, check if the search term 'Amod' exists within the results\ncy.contains('Amod').should('exist'); // Check if 'Amod' appears in the results\n// You can also verify that a specific result (like \"Amod\") is clickable\ncy.get('#wikipedia-search-result-link').contains('Amod').should('have.attr', 'href').and('include', 'Amod'); // Check if the href contains the expected result",
+              "err": {},
+              "uuid": "18f47657-556e-4034-b280-7c63ba8141ac",
+              "parentUUID": "c4c3440f-3301-4437-ae8d-7e1fc2621f7f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should verify table data is sorted ascending when column is clicked",
+              "fullTitle": "table should verify table data is sorted ascending when column is clicked",
+              "timedOut": null,
+              "duration": 2925,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://kitchen.applitools.com/ingredients/table');\n// Get the initial unsorted table data\nlet initialTableData = [];\ncy.get('#fruits-vegetables tbody tr').each(($row, rowIndex) => {\n  const rowData = [];\n  cy.wrap($row).find('td').each(($cell, cellIndex) => {\n    rowData.push($cell.text());\n  }).then(() => {\n    initialTableData.push(rowData);\n  });\n}).then(() => {\n  // Now that we have the data, sort the table by clicking the column header\n  cy.get('#column-button-name').click(); // Clicking on the \"Name\" column header to sort the table\n  // Wait for the table to update after sorting\n  cy.wait(1000); // Adjust wait time as necessary to ensure the table has sorted\n  // Get the table data again after sorting\n  let sortedTableData = [];\n  cy.get('#fruits-vegetables tbody tr').each(($row, rowIndex) => {\n    const rowData = [];\n    cy.wrap($row).find('td').each(($cell, cellIndex) => {\n      rowData.push($cell.text());\n    }).then(() => {\n      sortedTableData.push(rowData);\n    });\n  }).then(() => {\n    // Verify the table is sorted in ascending order based on column clicked\n    const sortedAscending = initialTableData.slice().sort(); // Create a sorted version of the initial data\n    expect(sortedTableData).to.deep.equal(sortedAscending); // Compare sorted data with the table data after sorting\n  });\n});",
+              "err": {},
+              "uuid": "e6408b0c-62a0-49cb-b865-e29604fa26c9",
+              "parentUUID": "c4c3440f-3301-4437-ae8d-7e1fc2621f7f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should verify table data is sorted ascending when column is clicked",
+              "fullTitle": "table should verify table data is sorted ascending when column is clicked",
+              "timedOut": null,
+              "duration": 1724,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://kitchen.applitools.com/ingredients/table');\n// Get the initial unsorted table data\nlet initialTableData = [];\ncy.get('#fruits-vegetables tbody tr').each(($row, rowIndex) => {\n  const rowData = [];\n  cy.wrap($row).find('td').each(($cell, cellIndex) => {\n    rowData.push($cell.text());\n  }).then(() => {\n    initialTableData.push(rowData);\n  });\n}).then(() => {\n  // Now that we have the data, sort the table by clicking the column header\n  cy.get('#column-button-name').click(); // Clicking on the \"Name\" column header to sort the table\n  // Wait for the table to update after sorting\n  cy.wait(1000); // Adjust wait time as necessary to ensure the table has sorted\n  // Get the table data again after sorting\n  let sortedTableData = [];\n  cy.get('#fruits-vegetables tbody tr').each(($row, rowIndex) => {\n    const rowData = [];\n    cy.wrap($row).find('td').each(($cell, cellIndex) => {\n      rowData.push($cell.text());\n    }).then(() => {\n      sortedTableData.push(rowData);\n    });\n  }).then(() => {\n    // Verify the table is sorted in ascending order based on column clicked\n    const sortedAscending = initialTableData.slice().sort(); // Create a sorted version of the initial data\n    expect(sortedTableData).to.deep.equal(sortedAscending); // Compare sorted data with the table data after sorting\n  });\n});",
+              "err": {},
+              "uuid": "3788b352-7cf5-44d5-a4a6-d513aaa4c9ba",
+              "parentUUID": "c4c3440f-3301-4437-ae8d-7e1fc2621f7f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "18f47657-556e-4034-b280-7c63ba8141ac",
+            "e6408b0c-62a0-49cb-b865-e29604fa26c9",
+            "3788b352-7cf5-44d5-a4a6-d513aaa4c9ba"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9358,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
